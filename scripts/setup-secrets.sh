@@ -17,7 +17,7 @@ fi
 # Function to validate input is not empty
 validate_input() {
     if [ -z "$1" ]; then
-        echo "Input cannot be empty"
+        echo "Input cannot be empty" >&2
         exit 1
     fi
 }
@@ -42,19 +42,19 @@ print_instructions() {
     echo "2. Scroll to 'Project ID'"
     echo "3. Copy the ID"
     echo
-}
+} >&2
 
 # Try to load from .env file
 ENV_FILE=".env"
 if [ -f "$ENV_FILE" ]; then
-    echo "Loading credentials from .env file..."
+    echo "Loading credentials from .env file..." >&2
     source "$ENV_FILE"
 else
-    echo "No .env file found. You can create one with:"
-    echo "VERCEL_TOKEN=your_token"
-    echo "VERCEL_ORG_ID=your_org_id"
-    echo "VERCEL_PROJECT_ID=your_project_id"
-    echo
+    echo "No .env file found. You can create one with:" >&2
+    echo "VERCEL_TOKEN=your_token" >&2
+    echo "VERCEL_ORG_ID=your_org_id" >&2
+    echo "VERCEL_PROJECT_ID=your_project_id" >&2
+    echo >&2
     print_instructions
 fi
 
@@ -65,14 +65,14 @@ get_credential() {
     local value=${!var_name}
 
     if [ -z "$value" ]; then
-        echo "No $var_name found in .env file"
+        echo "No $var_name found in .env file" >&2
         read -p "$prompt: " value
     else
-        echo "✓ Found $var_name in .env file"
+        echo "✓ Found $var_name in .env file" >&2
     fi
 
     validate_input "$value"
-    echo "$value"
+    printf "%s" "$value"
 }
 
 # Get credentials with fallback to interactive input
@@ -81,32 +81,32 @@ VERCEL_ORG_ID=$(get_credential "VERCEL_ORG_ID" "Vercel Organization ID")
 VERCEL_PROJECT_ID=$(get_credential "VERCEL_PROJECT_ID" "Vercel Project ID")
 
 # Set GitHub secrets
-echo "Setting up GitHub secrets..."
+echo "Setting up GitHub secrets..." >&2
 
 gh secret set VERCEL_TOKEN --body "$VERCEL_TOKEN"
 if [ $? -eq 0 ]; then
-    echo "✅ VERCEL_TOKEN set successfully"
+    echo "✅ VERCEL_TOKEN set successfully" >&2
 else
-    echo "❌ Failed to set VERCEL_TOKEN"
+    echo "❌ Failed to set VERCEL_TOKEN" >&2
     exit 1
 fi
 
 gh secret set VERCEL_ORG_ID --body "$VERCEL_ORG_ID"
 if [ $? -eq 0 ]; then
-    echo "✅ VERCEL_ORG_ID set successfully"
+    echo "✅ VERCEL_ORG_ID set successfully" >&2
 else
-    echo "❌ Failed to set VERCEL_ORG_ID"
+    echo "❌ Failed to set VERCEL_ORG_ID" >&2
     exit 1
 fi
 
 gh secret set VERCEL_PROJECT_ID --body "$VERCEL_PROJECT_ID"
 if [ $? -eq 0 ]; then
-    echo "✅ VERCEL_PROJECT_ID set successfully"
+    echo "✅ VERCEL_PROJECT_ID set successfully" >&2
 else
-    echo "❌ Failed to set VERCEL_PROJECT_ID"
+    echo "❌ Failed to set VERCEL_PROJECT_ID" >&2
     exit 1
 fi
 
-echo
-echo "🎉 All secrets have been set successfully!"
-echo "Your GitHub Actions workflow should now be able to deploy to Vercel" 
+echo >&2
+echo "🎉 All secrets have been set successfully!" >&2
+echo "Your GitHub Actions workflow should now be able to deploy to Vercel" >&2 
