@@ -18,14 +18,12 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: './trmx-blog/package-lock.json'
+          cache-dependency-path: './package-lock.json'
 
       - name: Install dependencies
-        working-directory: ./trmx-blog
         run: npm ci
 
       - name: Build
-        working-directory: ./trmx-blog
         run: npm run build
 
       - name: Deploy to Vercel
@@ -34,6 +32,4 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          cd trmx-blog
-          npx vercel deploy --prod --token=$VERCEL_TOKEN 
+        run: npx vercel deploy --prod --token=$VERCEL_TOKEN 

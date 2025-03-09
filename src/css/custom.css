@@ -4,27 +4,199 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* Primary color - Light Blue */
+  --ifm-color-primary: #3498db;
+  --ifm-color-primary-dark: #2980b9;
+  --ifm-color-primary-darker: #2472a4;
+  --ifm-color-primary-darkest: #1a5276;
+  --ifm-color-primary-light: #5dade2;
+  --ifm-color-primary-lighter: #85c1e9;
+  --ifm-color-primary-lightest: #aed6f1;
+
+  /* Background colors */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f8f9fa;
+  
+  /* Font settings */
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', SFMono-Regular, monospace;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.65;
+  
+  /* Navbar */
+  --ifm-navbar-background-color: var(--ifm-background-color);
+  --ifm-navbar-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ifm-navbar-height: 3.75rem;
+  
+  /* Code blocks */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-code-border-radius: 8px;
+  --ifm-pre-background: #f8f9fa;
+  
+  /* Cards and containers */
+  --ifm-card-border-radius: 12px;
+  --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --ifm-global-radius: 8px;
+  
+  /* Links */
+  --ifm-link-decoration: none;
+  --ifm-link-hover-decoration: none;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode overrides */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #5dade2;
+  --ifm-color-primary-dark: #3498db;
+  --ifm-color-primary-darker: #2980b9;
+  --ifm-color-primary-darkest: #2472a4;
+  --ifm-color-primary-light: #85c1e9;
+  --ifm-color-primary-lighter: #aed6f1;
+  --ifm-color-primary-lightest: #d6eaf8;
+  
+  --ifm-background-color: #1a1a1a;
+  --ifm-background-surface-color: #242424;
+  --ifm-pre-background: #2d2d2d;
+}
+
+/* Flat design enhancements */
+.navbar {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme='dark'] .navbar {
+  background-color: rgba(26, 26, 26, 0.8);
+}
+
+.footer {
+  --ifm-footer-background-color: var(--ifm-background-surface-color);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Blog post cards */
+.blog-list-page article {
+  border-radius: var(--ifm-card-border-radius);
+  box-shadow: var(--ifm-global-shadow-md);
+  transition: all 0.3s ease;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background: var(--ifm-background-color);
+}
+
+.blog-list-page article:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.12);
+}
+
+/* Code blocks */
+div[class^='codeBlockContainer_'] {
+  box-shadow: var(--ifm-global-shadow-lw);
+  border-radius: var(--ifm-code-border-radius);
+}
+
+.prism-code {
+  counter-reset: line-number;
+}
+
+.prism-code .token-line::before {
+  counter-increment: line-number;
+  content: counter(line-number);
+  margin-right: 1.5rem;
+  color: var(--ifm-color-gray-600);
+  opacity: 0.4;
+  text-align: right;
+  min-width: 2.5em;
+  display: inline-block;
+}
+
+.theme-code-block-highlighted-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+  border-left: 3px solid var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .theme-code-block-highlighted-line {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.code-block-error-line {
+  background-color: rgba(255, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+  border-left: 3px solid #ff0000;
+}
+
+[data-theme='dark'] .code-block-error-line {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--ifm-global-radius);
+  transition: all 0.2s ease;
+  border: none;
+  padding: 0.75rem 1.5rem;
+}
+
+.button--secondary {
+  background-color: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+}
+
+.button--secondary:hover {
+  background-color: var(--ifm-color-primary-lighter);
+}
+
+/* Table of Contents */
+.table-of-contents {
+  border-left: 2px solid var(--ifm-color-emphasis-200);
+  padding-left: 1rem;
+}
+
+.table-of-contents__link:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* Markdown content */
+.markdown > h2 {
+  border-bottom: 2px solid var(--ifm-color-emphasis-200);
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+.markdown > h3 {
+  margin-top: 2rem;
+}
+
+/* Featured blog posts */
+.featuredPost {
+  background: var(--ifm-background-color);
+  border-radius: var(--ifm-card-border-radius);
+  box-shadow: var(--ifm-global-shadow-md);
+  transition: all 0.3s ease;
+}
+
+.featuredPost:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.15);
+}
+
+/* Tags */
+.tag {
+  border-radius: 20px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  border: none;
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+}
+
+/* Reading time and metadata */
+.blogPostData {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
 }
