@@ -3,21 +3,151 @@
  * and scoped locally.
  */
 
+/* Hero section */
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(145deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-light) 100%);
+  color: white;
+}
+
+.heroBanner h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.heroBanner p {
+  font-size: 1.5rem;
+  margin: 2rem 0;
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
   }
+  .heroBanner h1 {
+    font-size: 2.5rem;
+  }
+  .heroBanner p {
+    font-size: 1.2rem;
+  }
 }
 
+/* Buttons */
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+}
+
+/* Focus Areas */
+.focusAreas {
+  padding: 4rem 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.focusGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.focusCard {
+  background: var(--ifm-background-color);
+  border-radius: var(--ifm-card-border-radius);
+  padding: 2rem;
+  box-shadow: var(--ifm-global-shadow-md);
+  transition: all 0.3s ease;
+}
+
+.focusCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.focusCard h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.focusCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.focusCard li {
+  margin: 0.8rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.focusCard li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--ifm-color-primary);
+}
+
+/* Featured Posts */
+.featuredPosts {
+  padding: 4rem 0;
+  background: var(--ifm-background-color);
+}
+
+.featuredTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  color: var(--ifm-color-primary-darker);
+}
+
+.featuredGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.featuredPost {
+  background: var(--ifm-background-surface-color);
+  border-radius: var(--ifm-card-border-radius);
+  padding: 2rem;
+  box-shadow: var(--ifm-global-shadow-md);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.featuredPost:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.featuredPost h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary-darker);
+}
+
+.featuredPost p {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media screen and (max-width: 996px) {
+  .focusGrid,
+  .featuredGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .featuredTitle {
+    font-size: 2rem;
+  }
 }
