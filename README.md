@@ -1,41 +1,48 @@
-# Website
+# TRMX Blog
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+[![Deploy to Vercel](https://github.com/TheRemjx01/trmx-blog/actions/workflows/deploy.yml/badge.svg)](https://github.com/TheRemjx01/trmx-blog/actions/workflows/deploy.yml)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://trmx-blog.vercel.app)
+[![Built with Docusaurus](https://img.shields.io/badge/Built%20with-Docusaurus-teal?logo=docusaurus)](https://docusaurus.io)
+[![Made with React](https://img.shields.io/badge/Made%20with-React-blue?logo=react)](https://reactjs.org)
 
-### Installation
+My personal blog where I share insights about engineering best practices, architecture patterns, and real-world experiences.
 
+## 🚀 Live Site
+
+Visit the blog at: [https://trmx-blog.vercel.app](https://trmx-blog.vercel.app)
+
+## 💻 Tech Stack
+
+- [Docusaurus](https://docusaurus.io/) - Static site generator
+- [React](https://reactjs.org/) - UI Framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Vercel](https://vercel.com/) - Deployment platform
+
+## ✨ Features
+
+- Modern, responsive design
+- Dark mode support
+- Code syntax highlighting
+- Mermaid diagram support
+- Featured posts section
+- RSS feed
+
+## 🛠️ Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Build for production
+npm run build
+
+# Serve production build locally
+npm run serve
 ```
-$ yarn
-```
 
-### Local Development
+## 📝 License
 
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+MIT
